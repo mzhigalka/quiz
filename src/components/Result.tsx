@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { questions } from "../App";
+import { GameProps } from "./Game";
 
 interface ResultProp {
   correct: number;
+  questions: GameProps[];
 }
 
-const Result: FC<ResultProp> = ({ correct }) => {
+const Result: FC<ResultProp> = ({ correct, questions }) => {
   return (
     <div className="result">
       <img src="https://cdn-icons-png.flaticon.com/512/2278/2278992.png" />

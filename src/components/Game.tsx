@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import { questions } from '../App';
 
-interface GameProps {
+export interface GameProps {
   step: number;
   question: {
     title: string
@@ -12,7 +11,7 @@ interface GameProps {
 }
 
 const Game: FC<GameProps> = ({ step, question, onClickVariant }) => {
-  const percentage = Math.round((step / questions.length) * 100);
+  const percentage = Math.round((step / question.variants.length) * 100);
 
   return (
     <>
