@@ -42,6 +42,10 @@ body {
     img {
       width: 150px;
     }
+
+    p {
+      font-size: 14px;
+    }
   }
 
   .progress {
@@ -109,6 +113,13 @@ body {
       &:hover {
         border: 2px solid rgba(0, 0, 0, 0.3);
       }
+    }
+  }
+
+  .timer {
+    span {
+      font-size: 24px;
+      font-weight: 600;
     }
   }
 }
