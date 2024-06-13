@@ -4,12 +4,22 @@ import axios from "axios";
 
 import Result from "./components/Result";
 import Game from "./components/Game";
+import { Timer } from "./components/Timer";
+import { createTimeModel, useTimeModel } from "react-compound-timer";
+
+const timer = createTimeModel({
+  initialTime: 0,
+  direction: "forward",
+  startImmediately: true,
+});
 
 function App() {
   const [step, setStep] = React.useState<number>(0);
   const [correct, setCorrect] = React.useState<number>(0);
   const [questions, setQuestions] = React.useState<any>([]);
+  const [finalTime, setFinalTime] = React.useState<any>({ minutes: 0, seconds: 0 });
   const question = questions[step];
+  const { value } = useTimeModel(timer);
 
   React.useEffect(() => {
     const fetchQuestions = async () => {
@@ -31,6 +41,14 @@ function App() {
     if (index === question.correct) {
       setCorrect(prevCorrect => prevCorrect + 1);
     }
+
+    const nextStep = step + 1;
+    if (nextStep < questions.length) {
+      setStep(nextStep);
+    } else {
+      setFinalTime({ minutes: value.m, seconds: value.s });
+      setStep(nextStep);
+    }
   };
 
   return (
@@ -43,7 +61,9 @@ function App() {
       ) : (
         <Result
           questions={questions}
-          correct={correct} />
+          correct={correct}
+          finalTime={finalTime}
+        />
       )}
     </div>
   );

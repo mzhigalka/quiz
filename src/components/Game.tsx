@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Timer } from './Timer';
 
 export interface GameProps {
   step: number;
@@ -34,8 +35,9 @@ const Game: FC<GameProps> = ({ step, question, onClickVariant }) => {
           </li>
         ))}
       </ul>
+      <Timer />
     </>
   );
 }
 
-export default Game
+export default Game;
