@@ -1,15 +1,7 @@
 import { FC } from 'react';
 import { Timer } from './Timer';
-
-export interface GameProps {
-  step: number;
-  question: {
-    title: string
-    variants: string[];
-    correct: number;
-  };
-  onClickVariant: (index: number) => void;
-}
+import { GameProps } from '../@types/types';
+export type QuestionType = GameProps['question'];
 
 const Game: FC<GameProps> = ({ step, question, onClickVariant }) => {
   const percentage = Math.round((step / question.variants.length) * 100);

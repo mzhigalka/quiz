@@ -3,8 +3,8 @@ import React from "react";
 import axios from "axios";
 
 import Result from "./components/Result";
+import { FinalTime, QuestionProps } from "./@types/types";
 import Game from "./components/Game";
-import { Timer } from "./components/Timer";
 import { createTimeModel, useTimeModel } from "react-compound-timer";
 
 const timer = createTimeModel({
@@ -16,8 +16,8 @@ const timer = createTimeModel({
 function App() {
   const [step, setStep] = React.useState<number>(0);
   const [correct, setCorrect] = React.useState<number>(0);
-  const [questions, setQuestions] = React.useState<any>([]);
-  const [finalTime, setFinalTime] = React.useState<any>({ minutes: 0, seconds: 0 });
+  const [questions, setQuestions] = React.useState<QuestionProps[]>([]);
+  const [finalTime, setFinalTime] = React.useState<FinalTime>({ minutes: 0, seconds: 0 });
   const question = questions[step];
   const { value } = useTimeModel(timer);
 

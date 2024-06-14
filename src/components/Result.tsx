@@ -1,11 +1,13 @@
 import { FC } from "react";
 import { GameProps } from "./Game";
 
-interface ResultProp {
+export interface ResultProp {
   correct: number;
   questions: GameProps[];
   finalTime: { minutes: number; seconds: number };
 }
+
+export type FinalTime = ResultProp['finalTime'];
 
 const Result: FC<ResultProp> = ({ correct, questions, finalTime }) => {
   const formatTime = (time: number) => {
