@@ -28,7 +28,7 @@ function App() {
         setQuestions(res.data)
       } catch (error) {
         console.warn(error);
-        alert("Ошибка с вопросами");
+        alert("Ошибка, попробуйте включить VPN-сервис");
       }
     };
 
@@ -57,7 +57,9 @@ function App() {
         <Game
           step={step}
           question={question}
-          onClickVariant={onClickVariant} />
+          onClickVariant={onClickVariant}
+          totalQuestions={questions.length}
+        />
       ) : (
         <Result
           questions={questions}

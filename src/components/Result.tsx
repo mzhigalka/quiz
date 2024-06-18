@@ -1,13 +1,6 @@
 import { FC } from "react";
-import { GameProps } from "./Game";
-
-export interface ResultProp {
-  correct: number;
-  questions: GameProps[];
-  finalTime: { minutes: number; seconds: number };
-}
-
-export type FinalTime = ResultProp['finalTime'];
+import Popup from "./Popup";
+import { ResultProp } from "../@types/types";
 
 const Result: FC<ResultProp> = ({ correct, questions, finalTime }) => {
   const formatTime = (time: number) => {
@@ -25,6 +18,7 @@ const Result: FC<ResultProp> = ({ correct, questions, finalTime }) => {
       <a href="/">
         <button>Попробовать снова</button>
       </a>
+      <Popup correct={correct} questions={questions} />
     </div>
   );
 }
