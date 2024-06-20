@@ -2,9 +2,10 @@ import "./scss/index.scss";
 import React from "react";
 import axios from "axios";
 
+import Game from "./components/Game";
+import { motion } from "framer-motion";
 import Result from "./components/Result";
 import { FinalTime, QuestionProps } from "./@types/types";
-import Game from "./components/Game";
 import { createTimeModel, useTimeModel } from "react-compound-timer";
 
 const timer = createTimeModel({
@@ -52,22 +53,43 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <motion.div
+      className="App"
+      initial={{ opacity: 0, scale: 0.3 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1 }}
+    >
       {step != questions.length ? (
-        <Game
-          step={step}
-          question={question}
-          onClickVariant={onClickVariant}
-          totalQuestions={questions.length}
-        />
+        <motion.div
+          key={step}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: step >= 1 ? 0.5 : 0 }}
+        >
+          <Game
+            step={step}
+            question={question}
+            onClickVariant={onClickVariant}
+            totalQuestions={questions.length}
+          />
+        </motion.div>
       ) : (
-        <Result
-          questions={questions}
-          correct={correct}
-          finalTime={finalTime}
-        />
+        <motion.div
+          key="result"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <Result
+            questions={questions}
+            correct={correct}
+            finalTime={finalTime}
+          />
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }
 
