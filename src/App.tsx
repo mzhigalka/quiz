@@ -3,8 +3,9 @@ import React from "react";
 import axios from "axios";
 
 import Game from "./components/Game";
-import { motion } from "framer-motion";
 import Result from "./components/Result";
+
+import { motion } from "framer-motion";
 import { FinalTime, QuestionProps } from "./@types/types";
 import { createTimeModel, useTimeModel } from "react-compound-timer";
 
