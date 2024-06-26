@@ -26,7 +26,7 @@ function App() {
   React.useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await axios.get("https://443bbf898bac2295.mokky.dev/questions")
+        const res = await axios.get("https://quiztest.free.beeceptor.com/questions")
         setQuestions(res.data)
       } catch (error) {
         console.warn(error);
