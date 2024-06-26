@@ -23,3 +23,7 @@ export interface PopupProps {
   correct: ResultProp['correct'];
   questions: ResultProp['questions'];
 }
+
+export interface ErrorProps {
+  message: string;
+}
