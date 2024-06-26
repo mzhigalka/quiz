@@ -3,6 +3,7 @@ import React from "react";
 import axios from "axios";
 
 import Game from "./components/Game";
+import Error from "./components/Error";
 import Result from "./components/Result";
 
 import { motion } from "framer-motion";
@@ -20,6 +21,7 @@ function App() {
   const [correct, setCorrect] = React.useState<number>(0);
   const [questions, setQuestions] = React.useState<QuestionProps[]>([]);
   const [finalTime, setFinalTime] = React.useState<FinalTime>({ minutes: 0, seconds: 0 });
+  const [error, setError] = React.useState<string | null>(null);
   const question = questions[step];
   const { value } = useTimeModel(timer);
 
@@ -30,7 +32,7 @@ function App() {
         setQuestions(res.data)
       } catch (error) {
         console.warn(error);
-        alert("Ошибка, попробуйте включить VPN-сервис");
+        setError("Ошибка при получении вопросов, попробуйте позже :(");
       }
     };
 
@@ -52,6 +54,10 @@ function App() {
       setStep(nextStep);
     }
   };
+
+  if (error) {
+    return <Error message={error} />
+  }
 
   return (
     <motion.div
